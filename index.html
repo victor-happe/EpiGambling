@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎰 EpiGambling - HACK ME 🎰</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial Black', sans-serif;
+            background: radial-gradient(circle at center, #ff6b6b, #ee5a6f, #c92a2a);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            display: none; /* Simplification pour la performance */
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 4.5em;
+            color: #ffff00;
+            text-shadow: 
+                4px 4px 0px #ff0000,
+                8px 8px 0px #000,
+                0 0 30px #ffff00;
+            margin-bottom: 20px;
+            letter-spacing: 8px;
+            animation: titleShake 0.3s infinite;
+        }
+
+        @keyframes titleShake {
+            0%, 100% { transform: rotate(-1deg); }
+            50% { transform: rotate(1deg); }
+        }
+
+        .container {
+            background: linear-gradient(to bottom, #ff1744, #d50000);
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.9),
+                inset 0 0 100px rgba(255, 255, 0, 0.2),
+                inset 0 -5px 20px rgba(0, 0, 0, 0.5);
+            border: 20px solid;
+            border-color: #ffff00;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: -25px;
+            right: -25px;
+            bottom: -25px;
+            background: linear-gradient(45deg, #ff9800, #ff5722);
+            border-radius: 25px;
+            z-index: -1;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Lumières clignotantes */
+        .lights-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .light {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-shadow: 
+                0 0 30px currentColor,
+                inset 0 0 15px rgba(255, 255, 255, 0.8);
+            animation: lightBlink var(--delay) infinite;
+            border: 4px solid rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes lightBlink {
+            0%, 100% { 
+                opacity: 1; 
+                transform: scale(1.1);
+                box-shadow: 0 0 50px currentColor, inset 0 0 20px rgba(255, 255, 255, 0.8);
+            }
+            50% { 
+                opacity: 0.2; 
+                transform: scale(0.85);
+                box-shadow: 0 0 10px currentColor, inset 0 0 5px rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        .light.red { background: #ff0000; color: #ff0000; }
+        .light.yellow { background: #ffff00; color: #ffff00; }
+        .light.green { background: #00ff00; color: #00ff00; }
+        .light.blue { background: #00ffff; color: #00ffff; }
+        .light.pink { background: #ff00ff; color: #ff00ff; }
+        .light.orange { background: #ff8800; color: #ff8800; }
+
+        /* Marquee clignotant */
+        .marquee {
+            background: linear-gradient(90deg, #ffff00, #ff0000, #ffff00);
+            border: 6px solid #000;
+            border-radius: 15px;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            box-shadow: 
+                0 0 40px rgba(255, 255, 0, 0.9),
+                inset 0 0 30px rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: marqueePulse 0.5s ease-in-out infinite;
+        }
+
+        @keyframes marqueePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .marquee-text {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #000;
+            text-align: center;
+            text-shadow: 
+                2px 2px 0px #ffff00,
+                -2px -2px 0px #ff0000;
+            letter-spacing: 4px;
+            animation: marqueeShake 0.2s infinite;
+        }
+        
+        /* STYLE SPECIAL POUR LE HACK DETECTÉ */
+        .hack-alert {
+            color: #ff0000 !important;
+            text-shadow: 0 0 15px #ff0000, 2px 2px 0px #000 !important;
+            animation: none !important; /* On arrête le tremblement pour que ce soit bien lisible et effrayant */
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        @keyframes marqueeShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-2px) rotate(-0.5deg); }
+            75% { transform: translateX(2px) rotate(0.5deg); }
+        }
+
+        /* Coins décoratifs clignotants */
+        .corner-light {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #ffff00;
+            border-radius: 50%;
+            box-shadow: 0 0 40px #ffff00;
+            animation: cornerBlink 0.4s infinite;
+            border: 4px solid #ff0000;
+        }
+
+        .corner-light.top-left { top: 10px; left: 10px; }
+        .corner-light.top-right { top: 10px; right: 10px; animation-delay: 0.1s; }
+        .corner-light.bottom-left { bottom: 10px; left: 10px; animation-delay: 0.2s; }
+        .corner-light.bottom-right { bottom: 10px; right: 10px; animation-delay: 0.3s; }
+
+        @keyframes cornerBlink {
+            0%, 100% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 50px #ffff00; }
+            50% { opacity: 0.2; transform: scale(0.8); box-shadow: 0 0 10px #ffff00; }
+        }
+
+        /* Bande lumineuse en haut */
+        .light-strip {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #000;
+            border-radius: 10px;
+            border: 4px solid #ffff00;
+        }
+
+        .light-bulb {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            animation: chase 1s infinite;
+            border: 3px solid #000;
+        }
+
+        .light-bulb:nth-child(1) { background: #ff0000; animation-delay: 0s; }
+        .light-bulb:nth-child(2) { background: #ff8800; animation-delay: 0.125s; }
+        .light-bulb:nth-child(3) { background: #ffff00; animation-delay: 0.25s; }
+        .light-bulb:nth-child(4) { background: #00ff00; animation-delay: 0.375s; }
+        .light-bulb:nth-child(5) { background: #00ffff; animation-delay: 0.5s; }
+        .light-bulb:nth-child(6) { background: #0000ff; animation-delay: 0.625s; }
+        .light-bulb:nth-child(7) { background: #ff00ff; animation-delay: 0.75s; }
+        .light-bulb:nth-child(8) { background: #ff0000; animation-delay: 0.875s; }
+
+        @keyframes chase {
+            0%, 100% { opacity: 0.15; transform: scale(0.7); box-shadow: 0 0 5px currentColor; }
+            50% { opacity: 1; transform: scale(1.3); box-shadow: 0 0 50px currentColor; }
+        }
+
+        .slot-machine {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .slot-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .slot-lights {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            pointer-events: none;
+        }
+
+        .slot-light {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: 3px solid #000;
+            animation: slotLightBlink 0.3s infinite;
+        }
+
+        /* Simplification des positions pour l'exemple */
+        .slot-light:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); background: #ff0000; }
+        .slot-light:nth-child(2) { top: 50%; right: 0; transform: translateY(-50%); background: #00ff00; }
+        .slot-light:nth-child(3) { bottom: 0; left: 50%; transform: translateX(-50%); background: #ff00ff; }
+        .slot-light:nth-child(4) { top: 50%; left: 0; transform: translateY(-50%); background: #0088ff; }
+
+        @keyframes slotLightBlink {
+            0%, 100% { opacity: 1; transform: translate(0, 0) scale(1.2); }
+            50% { opacity: 0.1; transform: translate(0, 0) scale(0.7); }
+        }
+
+        .reel {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+            border: 10px solid #000;
+            border-radius: 5px;
+            box-shadow: 
+                inset 0 0 30px rgba(255, 255, 0, 0.4),
+                0 10px 30px rgba(0, 0, 0, 0.9);
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .reel-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .reel-symbol {
+            width: 100%;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5em;
+            flex-shrink: 0;
+            filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.5));
+        }
+
+        .controls {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        button {
+            background: radial-gradient(circle at top, #ffff00, #ff0000);
+            color: #000;
+            border: 8px solid #000;
+            padding: 30px 80px;
+            font-size: 2.2em;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
+            transition: all 0.1s;
+            position: relative;
+            text-shadow: 2px 2px 0px #ffff00;
+            letter-spacing: 4px;
+            animation: buttonFlash 0.5s infinite;
+        }
+
+        @keyframes buttonFlash {
+            0%, 100% { box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), inset 0 0 40px rgba(255, 255, 0, 0.8); }
+            50% { box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), inset 0 0 60px rgba(255, 255, 0, 1); }
+        }
+
+        button:hover { transform: translateY(-5px) scale(1.05); }
+        button:active { transform: translateY(3px) scale(0.98); }
+        button:disabled { opacity: 0.5; cursor: not-allowed; animation: none; }
+
+        .message {
+            margin-top: 25px;
+            font-size: 1.5em;
+            font-weight: bold;
+            min-height: 40px;
+            text-align: center;
+        }
+
+        .win {
+            color: #ffff00;
+            text-shadow: 3px 3px 0px #000, 0 0 40px #ffff00, 0 0 60px #00ff00;
+            font-size: 2.8em !important;
+            animation: winBounce 0.3s ease-in-out infinite;
+        }
+
+        @keyframes winBounce {
+            0%, 100% { transform: translateY(0) scale(1) rotate(-2deg); }
+            50% { transform: translateY(-15px) scale(1.15) rotate(2deg); }
+        }
+
+        .lose {
+            color: #000;
+            text-shadow: 2px 2px 0px #fff, 4px 4px 0px #ff0000;
+            font-size: 1.8em !important;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <h1>🎰 EPIGAMBLING 🎰</h1>
+    </header>
+
+    <div class="container">
+        <div class="corner-light top-left"></div>
+        <div class="corner-light top-right"></div>
+        <div class="corner-light bottom-left"></div>
+        <div class="corner-light bottom-right"></div>
+
+        <div class="light-strip">
+            <div class="light-bulb"></div><div class="light-bulb"></div>
+            <div class="light-bulb"></div><div class="light-bulb"></div>
+            <div class="light-bulb"></div><div class="light-bulb"></div>
+            <div class="light-bulb"></div><div class="light-bulb"></div>
+        </div>
+
+        <div class="marquee">
+            <div class="marquee-text" id="marqueeText">★ EPIGAMBLING ★ JACKPOT ★</div>
+        </div>
+
+        <div class="lights-container">
+            <div class="light red" style="--delay: 0.5s"></div>
+            <div class="light yellow" style="--delay: 0.6s"></div>
+            <div class="light green" style="--delay: 0.7s"></div>
+            <div class="light blue" style="--delay: 0.8s"></div>
+            <div class="light pink" style="--delay: 0.9s"></div>
+        </div>
+
+        <div class="slot-machine">
+            <div class="slot-wrapper">
+                <div class="slot-lights">
+                    <div class="slot-light"></div><div class="slot-light"></div>
+                    <div class="slot-light"></div><div class="slot-light"></div>
+                </div>
+                <div class="reel" id="reel1">
+                    <div class="reel-container" id="reel1-container">
+                        <div class="reel-symbol">❓</div>
+                    </div>
+                </div>
+            </div>
+            <div class="slot-wrapper">
+                <div class="slot-lights">
+                    <div class="slot-light"></div><div class="slot-light"></div>
+                    <div class="slot-light"></div><div class="slot-light"></div>
+                </div>
+                <div class="reel" id="reel2">
+                    <div class="reel-container" id="reel2-container">
+                        <div class="reel-symbol">❓</div>
+                    </div>
+                </div>
+            </div>
+            <div class="slot-wrapper">
+                <div class="slot-lights">
+                    <div class="slot-light"></div><div class="slot-light"></div>
+                    <div class="slot-light"></div><div class="slot-light"></div>
+                </div>
+                <div class="reel" id="reel3">
+                    <div class="reel-container" id="reel3-container">
+                        <div class="reel-symbol">❓</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="spinBtn" onclick="requestSpin()">🎰 SPIN! 🎰</button>
+        </div>
+
+        <div class="message" id="message"></div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

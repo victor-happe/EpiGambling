@@ -1,0 +1,7 @@
+Prototype Epigambling
+
+index.html -> page web utilisateur (avec game.js)
+
+usb-control.py -> serveur
+
+epigamblingtest.ino -> programme esp32
