@@ -5,7 +5,7 @@ import serial.tools.list_ports
 import json
 
 # --- CONFIGURATION ---
-SERIAL_PORT = '/dev/tty.usbserial-0001' # Remplace avec ton port ! (ex: COM3 sur Windows)
+SERIAL_PORT = 'COM5'#/dev/tty.usbserial-0001' # Remplace avec ton port ! (ex: COM3 sur Windows)
 BAUD_RATE = 115200
 
 # La "Vraie" valeur. Si le client envoie autre chose, c'est un hack.
@@ -23,6 +23,12 @@ async def serial_listener():
     try:
         esp_serial = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=0.1)
         print("✅ ESP32 Connecté USB")
+        # Reset all motors to neutral/safe position on connection
+        try:
+            esp_serial.write(b"RESET_NEUTRAL\n")
+            print("🔄 Sent RESET_NEUTRAL to ESP32")
+        except Exception as e:
+            print(f"❌ Erreur en envoyant RESET_NEUTRAL: {e}")
     except Exception as e:
         print(f"❌ Erreur Série: {e}")
         return
