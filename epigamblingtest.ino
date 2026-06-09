@@ -13,9 +13,9 @@ IPAddress subnet(255, 255, 255, 0);
 
 // --- PINS ACTIVES ---
 const int buttonPin = 4;
-// Seulement 2 servos
+// Seulement 4 servos
 const int NUM_SERVOS = 4; 
-const int servoPins[NUM_SERVOS] = {12, 14, 13, 32}; // Servo 1 sur 12, Servo 2 sur 14
+const int servoPins[NUM_SERVOS] = {12, 14, 13, 32};
 
 Servo servos[NUM_SERVOS];
 WebServer server(80);
@@ -135,6 +135,15 @@ void loop() {
       
       // On passe au suivant (modulage par 2 maintenant)
       currentServoIndex = (currentServoIndex + 1) % NUM_SERVOS; 
+    }
+    else if(data == "RESET_NEUTRAL") {
+      Serial.println("RESET_NEUTRAL received");
+      for(int i=0; i<NUM_SERVOS; i++) {
+        servos[i].attach(servoPins[i], 1000, 2000);
+        servos[i].write(POS_REPOS);
+        delay(50);
+        servos[i].detach();
+      }
     }
   }
 }
