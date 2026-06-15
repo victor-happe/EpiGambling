@@ -56,7 +56,9 @@ void moveServoSequence(int id) {
     servos[id].write(180); 
     delay(DUREE_IMPULSION_360); // On tourne juste le temps nécessaire
     
-    // On n'a pas besoin de faire de retour, on coupe juste le signal.
+    // Retour à position neutre pour éviter les blocages
+    servos[id].write(90);
+    delay(200);
   }
   // --- CAS STANDARD : SERVO 180 DEGRES (PIN 12) ---
   else { 
@@ -70,6 +72,8 @@ void moveServoSequence(int id) {
   }
 
   // 4. ON COUPE (Silence total pour tous les servos)
+  // Attendre un peu avant de détacher pour laisser le servo se stabiliser
+  delay(100);
   servos[id].detach(); 
 }
 

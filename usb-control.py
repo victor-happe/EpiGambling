@@ -5,7 +5,7 @@ import serial.tools.list_ports
 import json
 
 # --- CONFIGURATION ---
-SERIAL_PORT = 'COM5'#/dev/tty.usbserial-0001' # Remplace avec ton port ! (ex: COM3 sur Windows)
+SERIAL_PORT = 'COM5' # Remplace avec ton port (ex '/dev/tty.usbserial-0001' for MacOs)
 BAUD_RATE = 115200
 
 # La "Vraie" valeur. Si le client envoie autre chose, c'est un hack.
